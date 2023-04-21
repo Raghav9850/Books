@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>List of Books</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Book Name</th>
+        <th>Description</th>
+        <th>Author</th>
+        <th>Categories</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+        <tr>
+          <td>{{ book.book_name }} <a href="{% url 'update_book' book.pk %}"> <button style="background-color:white" type="submit"><h5>Update</h5></button></a><br></td>
+          <td>{{ book.book_description }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.categories.all|join:", " }}</td>
+        </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
